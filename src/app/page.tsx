@@ -25,7 +25,7 @@ export default function Home() {
     // Generate an address on first load if one doesn't exist in local storage.
     // For simplicity here, we just generate a fresh one every reload as per "Generate New" requirement.
     const timer = setTimeout(() => {
-      const newAddress = `${generateRandomString(10)}@quamifymail.link`;
+      const newAddress = `${generateRandomString(10)}@artradering.com`;
       setAddress(newAddress);
     }, 0);
     return () => clearTimeout(timer);
