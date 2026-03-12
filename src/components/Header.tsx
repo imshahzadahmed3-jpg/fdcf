@@ -13,10 +13,12 @@ export default function Header() {
           </span>
         </div>
 
-        {/* Generate New Button */}
         <button 
           className="relative px-6 py-2.5 rounded-full font-medium text-white transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
-          onClick={() => window.location.reload()}
+          onClick={() => {
+            sessionStorage.setItem("forceNewQuamifyEmail", "true");
+            window.location.reload();
+          }}
         >
           <div className="absolute inset-0 bg-transparent rounded-full border border-transparent holo-border z-0"></div>
           <div className="relative z-10 flex items-center gap-2">
