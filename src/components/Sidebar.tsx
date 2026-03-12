@@ -1,12 +1,33 @@
 "use client";
 
 import { Email } from "@/types";
-import { formatDistanceToNow } from "@/lib/utils";
 
 interface SidebarProps {
   emails: Email[];
   selectedEmailId: string | null;
   onSelectEmail: (id: string) => void;
+}
+
+// Helper to format "time ago" safely avoiding NaN
+function getTimeAgo(dateStr: string | undefined): string {
+  if (!dateStr) return 'Just now';
+  
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return 'Just now'; // Fallback if still invalid
+  
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+  
+  if (diffInSeconds < 60) return 'Just now';
+  
+  const diffInMinutes = Math.floor(diffInSeconds / 60);
+  if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
+  
+  const diffInHours = Math.floor(diffInMinutes / 60);
+  if (diffInHours < 24) return `${diffInHours}h ago`;
+  
+  const diffInDays = Math.floor(diffInHours / 24);
+  return `${diffInDays}d ago`;
 }
 
 export default function Sidebar({ emails, selectedEmailId, onSelectEmail }: SidebarProps) {
@@ -43,7 +64,7 @@ export default function Sidebar({ emails, selectedEmailId, onSelectEmail }: Side
               
               <div className="flex justify-between items-center w-full">
                 <span className="font-semibold text-white truncate max-w-[70%]">{email.sender || "Unknown Sender"}</span>
-                <span className="text-xs text-gray-400 whitespace-nowrap">{formatDistanceToNow(email.created_at)}</span>
+                <span className="text-xs text-gray-400 whitespace-nowrap">{getTimeAgo(email.received_at)}</span>
               </div>
               
               <span className="text-sm text-gray-300 truncate w-full">

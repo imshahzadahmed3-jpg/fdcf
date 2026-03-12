@@ -20,7 +20,7 @@ export function useEmails(recipientAddress: string | null) {
         .from("emails")
         .select("*")
         .eq("recipient_address", recipientAddress)
-        .order("created_at", { ascending: false });
+        .order("received_at", { ascending: false });
 
       if (error) throw error;
       

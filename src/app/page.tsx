@@ -53,6 +53,7 @@ export default function Home() {
         subject: "Holographic Protocol Approved",
         recipient_address: address,
         body_text: "Your temporary email sequence has been successfully initialized. Welcome to the Quamify network.\n\nKeep shifting the paradigm.",
+        received_at: new Date().toISOString()
       });
     } catch (e) {
       console.error("Simulation failed:", e);
