@@ -50,7 +50,7 @@ export default function EmailViewer({ email }: EmailViewerProps) {
           
           <div className="flex items-center gap-2 self-start sm:self-center bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
             <span className="w-1.5 h-1.5 rounded-full bg-[--color-brand-pink] shadow-[0_0_8px_var(--color-brand-pink)]"></span>
-            <span className="text-gray-300 text-xs font-mono">{new Date(email.created_at).toLocaleString()}</span>
+            <span className="text-gray-300 text-xs font-mono">{new Date(email.created_at).toLocaleTimeString()}</span>
           </div>
         </div>
       </div>
